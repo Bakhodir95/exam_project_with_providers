@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
 import 'package:exam_project_with_providers/models/user.dart';
-import 'package:exam_project_with_providers/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
@@ -50,6 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   submit() async {
     if (formkey.currentState!.validate()) {
+      formkey.currentState!.save();
       try {
         await registerController.register(
           name: user.name,
