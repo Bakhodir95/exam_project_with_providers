@@ -45,15 +45,14 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
-            Consumer<UserProvider>(
+            Consumer<UserRegistrationController>(
               builder: (context, userProvider, child) {
                 return UserAccountsDrawerHeader(
-                  accountName: Text(userProvider.name ?? 'No Name'),
-                  accountEmail: Text(userProvider.email ?? 'No Email'),
+                  accountName: Text(userProvider.name),
+                  accountEmail: Text(userProvider.email),
                   currentAccountPicture: CircleAvatar(
-                    backgroundImage: userProvider.imageUrl != null &&
-                            userProvider.imageUrl!.isNotEmpty
-                        ? NetworkImage(userProvider.imageUrl!)
+                    backgroundImage: userProvider.imageUrl.isNotEmpty
+                        ? NetworkImage(userProvider.imageUrl)
                         : const NetworkImage(
                             "https://static.vecteezy.com/system/resources/thumbnails/019/900/322/small/happy-young-cute-illustration-face-profile-png.png",
                           ),
@@ -91,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                   leading: Image.asset(
-                    "assets/icons/theme_mode.png",
+                    "images/day.png",
                     width: 23,
                   ),
                   title: const Text("Tungi / kunduzgi holat"),
