@@ -1,5 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
+import 'package:exam_project_with_providers/providers/theme_provider.dart';
+import 'package:exam_project_with_providers/providers/user_provider.dart';
 import 'package:exam_project_with_providers/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,6 +21,8 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UserRegistrationController()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: MyApp(),
     ),
