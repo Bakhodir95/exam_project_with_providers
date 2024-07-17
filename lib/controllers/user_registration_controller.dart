@@ -15,17 +15,18 @@ class UserRegistrationController with ChangeNotifier {
     }
   }
 
-  register(
-    String name,
-    String surname,
-    String email,
-    String password,
-    String confirmedPassword,
-    String? imageUrl,
-  ) async {
+  register({
+    required String name,
+    required String surname,
+    required String email,
+    required String password,
+    required String? imageUrl,
+  }) async {
     try {
       final userdata = await fireAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
       await userService.addUser(
         name: name,
         surname: surname,

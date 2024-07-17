@@ -19,8 +19,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   File? imageFile;
   User user = User(
       id: '', deviceId: '', name: '', surname: '', email: '', imageUrl: '');
-  String? password;
-  String? confirmedPassword;
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _cPassword = TextEditingController();
 
   void openGallery() async {
     final imagePicker = ImagePicker();
@@ -49,17 +49,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   submit() async {
-    if (formkey.currentState!.validate() && confirmedPassword == password) {
-      formkey.currentState!.save();
+    if (formkey.currentState!.validate()) {
       try {
         await registerController.register(
-          user.email,
-          user.name,
-          user.surname,
-          user.imageUrl!,
-          user.deviceId,
-          user.id,
+          name: user.name,
+          surname: user.surname,
+          email: user.email,
+          password: _password.text,
+          imageUrl: user.imageUrl,
         );
+
         Navigator.pop(context);
       } catch (e) {
         print(e);
@@ -126,15 +125,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const Gap(10),
                 TextFormField(
+                  controller: _password,
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return "Please enter a password";
                     }
                     return null;
-                  },
-                  onSaved: (newValue) {
-                    password = newValue;
                   },
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -143,17 +140,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const Gap(10),
                 TextFormField(
                   obscureText: true,
+                  controller: _cPassword,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return "Please confirm your password";
+                    } else if (_cPassword.text != _password.text) {
+                      return 'Password should be similar';
                     }
-                    // if (value != password) {
-                    //   return "Passwords do not match";
-                    // }
+
                     return null;
-                  },
-                  onSaved: (newValue) {
-                    confirmedPassword = newValue;
                   },
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),

@@ -18,6 +18,7 @@ class UserFirerbaseService {
       'user-surname': surname,
       'user-email': email,
       'user-imageUrl': imageUrl,
+      'user-id': id
     };
     await _userCollection.doc(id).set(data);
   }
