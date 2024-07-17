@@ -145,7 +145,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     if (value == null || value.trim().isEmpty) {
                       return "Please confirm your password";
                     } else if (_cPassword.text != _password.text) {
-                      return 'Password should be similar';
+                      return 'Password should be the same';
                     }
 
                     return null;
