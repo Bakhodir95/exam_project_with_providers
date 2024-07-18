@@ -72,7 +72,7 @@ class _EventsWithinNextWeekWidgetState
                     child: FadeInImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(event.imageUrl),
-                      placeholder: const AssetImage('assets/images/event.png'),
+                      placeholder: const AssetImage('images/day.png'),
                     ),
                   ),
                 ),

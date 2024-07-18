@@ -36,30 +36,36 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            return const Center(child: Text("Error occured"));
-          } else if (snapshot.hasData) {
-            return const HomeScreen();
-          } else {
-            return const LoginScreen();
-          }
-        },
-      ),
-      // initialRoute: "/",
-      routes: {
-        // '/': (context) => const LoginScreen(),
-        '/registration': (context) => const RegisterScreen(),
-        '/login': (context) => const LoginScreen(),
-        '/home': (context) => const HomeScreen(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProivder, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme:
+              themeProivder.isDarkMode ? ThemeData.dark() : ThemeData.light(),
+          home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (snapshot.hasError) {
+                return const Center(child: Text("Error occured"));
+              } else if (snapshot.hasData) {
+                return const HomeScreen();
+              } else {
+                return const LoginScreen();
+              }
+            },
+          ),
+          // initialRoute: "/",
+          routes: {
+            // '/': (context) => const LoginScreen(),
+            '/registration': (context) => const RegisterScreen(),
+            '/login': (context) => const LoginScreen(),
+            '/home': (context) => const HomeScreen(),
+          },
+        );
       },
     );
   }
