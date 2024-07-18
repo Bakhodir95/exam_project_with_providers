@@ -35,25 +35,27 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ]),
         drawer: const AddDrawer(),
-        body: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SearchWidget(),
+              const SearchWidget(),
               Gap(10),
               Text(
-                "Yaqin 7 kun ichida",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                "yaqin_7_kun_ichida".tr(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
-              Padding(
+              const Padding(
                   padding: EdgeInsets.all(20),
                   child: EventsWithinNextWeekWidget()),
               Text(
-                "Barcha Tadbirlar",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                "barcha_tadbirlar".tr(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
-              CreatedEventsWidget(),
+              const CreatedEventsWidget(),
             ],
           ),
         ));

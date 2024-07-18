@@ -1,4 +1,4 @@
-{
+{    "har_bir_maydon_to'ldirilishi_shart":"Har bir maydon to'ldirilishi shart",
     "tizimga_kirish": "Tizimga kirish",
     "kirish": "Kirish",
     "royxatdan_otish": "Ro'yxatdan o'tish",
@@ -11,6 +11,7 @@
     "barcha_tadbirlar": "Barcha tadbirlar",
     "xabarlar": "Xabarlar",
     "eslatma_kuni": "Eslatma kuni",
+    "sevimlilar": "Sevimlilar",
     "eslatma_vaqti": "Eslatma vaqti",
     "eslatish": "Eslatish",
     "eslatma_belgilash": "Eslatma belgilash",
@@ -33,5 +34,15 @@
     "rasm_yoki_video_yuklash": "Rasm yoki video yuklash",
     "manzilni_belgilash": "Manzilni belgilash",
     "qoshish": "Qo'shish",
-    "tadbir_yakunlandi": "Tadbir yakunlandi"
+    "tadbir_yakunlandi": "Tadbir yakunlandi",
+    "cameradan": "Kamera orqali",
+    "gallereyadan": "Gallereya orqali",
+    "rasm": "Rasm",
+    "topshirish": "Topshirish",
+    "ro'yxatdan_o'tish": "Ro'yxatdan o'tish",
+    "ism_kiriting" : "Ismingizni kiriting",
+    "sharifingizni_kiriting" : "Sharifingizni kiriting",
+    "tadbir_haqida":"Tadbir haqida",
+    "chiqish": "Chiqish",
+    "sevimlilar": "Sevimlilar"
 }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
 import 'package:exam_project_with_providers/models/event.dart';
 import 'package:exam_project_with_providers/services/location_service.dart';
@@ -138,8 +139,8 @@ class _EvenDetailsScreenState extends State<EvenDetailsScreen> {
                 }),
             Column(
               children: [
-                const Text(
-                  "Tadbir haqida",
+                Text(
+                  "tadbir_haqida".tr(),
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 ),
                 const Gap(10),
@@ -178,8 +179,8 @@ class _EvenDetailsScreenState extends State<EvenDetailsScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange.shade300,
                 ),
-                child: const Text(
-                  "Ro'yxatdan O'tish",
+                child: Text(
+                  "royxatdan_otish".tr(),
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 ),
               ),

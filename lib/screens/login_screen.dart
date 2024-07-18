@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -46,8 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text(
-                  "Login",
+                Text(
+                  "tizimga_kirish".tr(),
                   style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
@@ -69,29 +70,29 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextFormField(
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return "Please enter a password";
+                      return "royxatdan_otish".tr();
                     }
                     return null;
                   },
                   onSaved: (newValue) {
                     password = newValue;
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      label: Text("Enter Password")),
+                      label: Text("royxatdan_otish").tr()),
                 ),
                 const Gap(10),
                 FilledButton(
                     onPressed: submitLogin,
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.all(5),
-                      child: Text("Submit"),
+                      child: Text("topshirish").tr(),
                     )),
                 TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/registration');
                     },
-                    child: const Text("SignUp")),
+                    child: const Text("ro'yxatdan_o'tish").tr()),
               ],
             ),
           ),

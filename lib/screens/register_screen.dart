@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
 import 'package:exam_project_with_providers/models/user.dart';
 import 'package:exam_project_with_providers/services/users_firbase_service.dart.dart';
@@ -81,8 +82,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  "Registration",
+                Text(
+                  "royxatdan_otish".tr(),
                   style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
@@ -136,9 +137,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     }
                     return null;
                   },
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      label: Text("Enter Password")),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), label: Text("kirish").tr()),
                 ),
                 const Gap(10),
                 TextFormField(
@@ -153,9 +153,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     return null;
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      label: Text("Confirm Password")),
+                      label: Text("parolni_tasdiqlash").tr()),
                 ),
                 const Gap(10),
                 TextFormField(
@@ -168,8 +168,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   onSaved: (newValue) {
                     user.name = newValue!;
                   },
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Enter Name")),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      label: Text("ism_kiriting").tr()),
                 ),
                 const Gap(10),
                 TextFormField(
@@ -182,18 +183,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   onSaved: (newValue) {
                     user.surname = newValue!;
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      label: Text("Enter Surname")),
+                      label: Text("sharifingizni_kiriting").tr()),
                 ),
                 const Gap(20),
                 FilledButton(
                     onPressed: () {
                       submit();
                     },
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.all(5),
-                      child: Text("Submit"),
+                      child: Text("topshirish").tr(),
                     )),
                 OutlinedButton(
                     onPressed: () {

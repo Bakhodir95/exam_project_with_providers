@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:exam_project_with_providers/controllers/event_controller.dart';
 import 'package:exam_project_with_providers/models/event.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -106,8 +107,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
         _info.text.isEmpty ||
         selected == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Har bir maydon to'ldirilishi shart"),
+        SnackBar(
+          content: const Text("har_bir_maydon_to'ldirilishi_shart").tr(),
         ),
       );
       return;
@@ -156,7 +157,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tadbir Qo'shish"),
+        title: const Text("tadbir_qo'shish").tr(),
         centerTitle: true,
       ),
       body: Padding(
@@ -167,19 +168,19 @@ class _AddEventScreenState extends State<AddEventScreen> {
           children: [
             TextField(
               controller: _nomi,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.orange,
                   ),
                 ),
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.orange,
                     width: 3,
                   ),
                 ),
-                labelText: "Nomi",
+                labelText: "nomi".tr(),
               ),
             ),
             TextField(
@@ -198,7 +199,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                     width: 3,
                   ),
                 ),
-                labelText: "Kuni",
+                labelText: "kuni".tr(),
               ),
             ),
             TextField(
@@ -219,29 +220,29 @@ class _AddEventScreenState extends State<AddEventScreen> {
                     width: 3,
                   ),
                 ),
-                labelText: "Vaqti",
+                labelText: "vaqti".tr(),
               ),
             ),
             TextField(
               controller: _info,
               minLines: 5,
               maxLines: 7,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.orange,
                   ),
                 ),
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.orange,
                     width: 3,
                   ),
                 ),
-                labelText: "Tadbir haqidagi ma'lumot:",
+                labelText: "tadbir_haqida_ma'lumot:".tr(),
               ),
             ),
-            const Text("Rasm yoki video yuklash"),
+            const Text("rasm_yoki_video_yuklash").tr(),
             Row(
               children: [
                 Expanded(
@@ -258,33 +259,33 @@ class _AddEventScreenState extends State<AddEventScreen> {
                               children: <Widget>[
                                 GestureDetector(
                                   onTap: openCamera,
-                                  child: const Row(
+                                  child: Row(
                                     children: [
-                                      Icon(Icons.camera_alt),
-                                      Gap(10),
-                                      Text("From Camera"),
+                                      const Icon(Icons.camera_alt),
+                                      const Gap(10),
+                                      Text("cameradan").tr(),
                                     ],
                                   ),
                                 ),
                                 const SizedBox(height: 16),
                                 GestureDetector(
                                   onTap: openGallery,
-                                  child: const Row(
+                                  child: Row(
                                     children: [
-                                      Icon(Icons.camera),
+                                      const Icon(Icons.camera),
                                       Gap(10),
-                                      Text("From Gallery"),
+                                      Text("gallereyadan").tr(),
                                     ],
                                   ),
                                 ),
                                 const SizedBox(height: 16),
                                 GestureDetector(
                                   onTap: () => Navigator.pop(context),
-                                  child: const Row(
+                                  child: Row(
                                     children: [
-                                      Icon(Icons.close),
+                                      const Icon(Icons.close),
                                       Gap(10),
-                                      Text("Cancel"),
+                                      Text("bekor_qilish").tr(),
                                     ],
                                   ),
                                 ),
@@ -308,15 +309,15 @@ class _AddEventScreenState extends State<AddEventScreen> {
                               _getImageFile!,
                               fit: BoxFit.cover,
                             )
-                          : const Center(
+                          : Center(
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.photo_camera,
                                     size: 30,
                                   ),
-                                  Text("Rasm"),
+                                  const Text("rasm").tr(),
                                 ],
                               ),
                             ),
@@ -345,7 +346,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                 ),
               ],
             ),
-            const Text("Manzilni belgilash"),
+            const Text("manzilni_belgilash").tr(),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -387,9 +388,9 @@ class _AddEventScreenState extends State<AddEventScreen> {
                   backgroundColor: Colors.orange.shade300,
                 ),
                 child: const Text(
-                  "Qo'shish",
+                  "qoshish",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                ),
+                ).tr(),
               ),
             ),
           ],

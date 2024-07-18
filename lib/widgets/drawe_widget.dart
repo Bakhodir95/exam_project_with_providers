@@ -34,7 +34,7 @@ class AddDrawer extends StatelessWidget {
           ListTile(
             trailing: const Icon(Icons.arrow_forward_ios_outlined),
             leading: const Icon(CupertinoIcons.tickets),
-            title: const Text('Mening tadbirlarim'),
+            title: Text('mening_tadbirlarim'.tr()),
             onTap: () {
               Navigator.pushReplacement(context,
                   CupertinoPageRoute(builder: (ctx) => const MyEvents()));
@@ -43,7 +43,7 @@ class AddDrawer extends StatelessWidget {
           ListTile(
             trailing: const Icon(Icons.arrow_forward_ios_outlined),
             leading: const Icon(Icons.person_2_outlined),
-            title: const Text("Profil Ma'lumotlari"),
+            title: Text("profil_malumotlari".tr()),
             onTap: () {
               Navigator.push(context,
                   CupertinoPageRoute(builder: (ctx) => const HomeScreen()));
@@ -62,14 +62,14 @@ class AddDrawer extends StatelessWidget {
                   "images/day.png",
                   width: 23,
                 ),
-                title: const Text("Tungi / kunduzgi holat"),
+                title: Text("tungi_kunduzgi_holat".tr()),
               );
             },
           ),
           ListTile(
             trailing: const Icon(Icons.arrow_forward_ios_outlined),
             leading: const Icon(CupertinoIcons.heart_circle_fill),
-            title: const Text("Sevimlilar"),
+            title: Text("sevimlilar".tr()),
             onTap: () {
               Navigator.push(context,
                   CupertinoPageRoute(builder: (ctx) => const HomeScreen()));
@@ -92,7 +92,7 @@ class AddDrawer extends StatelessWidget {
               ],
             ),
             leading: const Icon(Icons.language),
-            title: const Text("Til"),
+            title: Text("tillarni_ozgartirish".tr()),
           ),
           const Spacer(),
           Row(
@@ -106,9 +106,9 @@ class AddDrawer extends StatelessWidget {
                   size: 25,
                 ),
               ),
-              const Text(
-                "Chiqish",
-                style: TextStyle(
+              Text(
+                "chiqish".tr(),
+                style: const TextStyle(
                   color: Colors.red,
                   fontSize: 20,
                 ),
