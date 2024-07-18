@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
 import 'package:exam_project_with_providers/providers/theme_provider.dart';
 import 'package:exam_project_with_providers/screens/events_screen.dart';
 import 'package:exam_project_with_providers/screens/favourite_screen.dart';
+import 'package:exam_project_with_providers/screens/home_screen.dart';
 import 'package:exam_project_with_providers/screens/profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +49,7 @@ class AddDrawer extends StatelessWidget {
             title: const Text("Profil Ma'lumotlari"),
             onTap: () {
               Navigator.push(context,
-                  CupertinoPageRoute(builder: (ctx) => const ProfileScreen()));
+                  CupertinoPageRoute(builder: (ctx) => const HomeScreen()));
             },
           ),
           Consumer<ThemeProvider>(
@@ -70,17 +74,17 @@ class AddDrawer extends StatelessWidget {
             leading: const Icon(CupertinoIcons.heart_circle_fill),
             title: const Text("Sevimlilar"),
             onTap: () {
-              Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                      builder: (ctx) => const FavouriteScreen()));
+              Navigator.push(context,
+                  CupertinoPageRoute(builder: (ctx) => const HomeScreen()));
             },
           ),
           const Spacer(),
           Row(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                },
                 icon: const Icon(
                   Icons.logout,
                   size: 25,
