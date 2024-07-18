@@ -3,6 +3,7 @@ import 'package:exam_project_with_providers/controllers/user_registration_contro
 import 'package:exam_project_with_providers/providers/theme_provider.dart';
 import 'package:exam_project_with_providers/providers/user_provider.dart';
 import 'package:exam_project_with_providers/screens/login_screen.dart';
+import 'package:exam_project_with_providers/services/users_firbase_service.dart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:exam_project_with_providers/firebase_options.dart';
@@ -23,6 +24,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => UserRegistrationController()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => UserFirerbaseService()),
       ],
       child: MyApp(),
     ),

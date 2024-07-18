@@ -68,6 +68,7 @@ class UserRegistrationController with ChangeNotifier {
     required String email,
     required String password,
     required String? imageUrl,
+    required File file,
   }) async {
     try {
       final userdata = await fireAuth.createUserWithEmailAndPassword(
@@ -80,6 +81,7 @@ class UserRegistrationController with ChangeNotifier {
         email: email,
         imageUrl: imageUrl,
         id: userdata.user!.uid,
+        file: file,
       );
     } catch (e) {
       rethrow;

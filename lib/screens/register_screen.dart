@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
 import 'package:exam_project_with_providers/models/user.dart';
+import 'package:exam_project_with_providers/services/users_firbase_service.dart.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
@@ -48,15 +49,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   submit() async {
-    if (formkey.currentState!.validate()) {
+    if (formkey.currentState!.validate() && imageFile != null) {
       formkey.currentState!.save();
       try {
+        final _serviceStore = UserFirerbaseService();
         await registerController.register(
           name: user.name,
           surname: user.surname,
           email: user.email,
           password: _password.text,
           imageUrl: user.imageUrl,
+          file: imageFile!,
         );
 
         Navigator.pop(context);

@@ -1,3 +1,4 @@
+import 'package:exam_project_with_providers/widgets/drawe_widget.dart';
 import 'package:flutter/material.dart';
 
 class MyEvents extends StatefulWidget {
@@ -10,6 +11,38 @@ class MyEvents extends StatefulWidget {
 class _MyEventsState extends State<MyEvents> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Mening tadbirlarim"),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notification_add_rounded),
+            ),
+          ],
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: 'Tashkil qilganraim'),
+              Tab(text: 'Yaqinda'),
+              Tab(text: 'Ishtirok etganlarim'),
+              Tab(text: 'Bekor qilganlarim'),
+            ],
+          ),
+        ),
+        body: const TabBarView(
+          children: [
+            Center(child: Text('Home Tab')),
+            Center(child: Text('Search Tab')),
+            Center(
+              child: Text('Notifications Tab'),
+            ),
+            Center(child: Text('Notifications Tab')),
+          ],
+        ),
+      ),
+    );
   }
 }
