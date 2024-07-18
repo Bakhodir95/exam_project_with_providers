@@ -1,6 +1,7 @@
 import 'package:exam_project_with_providers/providers/user_provider.dart';
 import 'package:exam_project_with_providers/widgets/created_events_widget.dart';
 import 'package:exam_project_with_providers/widgets/drawe_widget.dart';
+import 'package:exam_project_with_providers/widgets/events_within_next_week_widget.dart';
 import 'package:exam_project_with_providers/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -33,33 +34,25 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ]),
         drawer: const AddDrawer(),
-        body: Padding(
+        body: const Padding(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SearchWidget(),
-              const Gap(10),
-              const Text(
+              SearchWidget(),
+              Gap(10),
+              Text(
                 "Yaqin 7 kun ichida",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               Padding(
-                padding: const EdgeInsets.all(20),
-                child: Container(
-                  width: 400,
-                  height: 250,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.amber,
-                  ),
-                ),
-              ),
-              const Text(
+                  padding: EdgeInsets.all(20),
+                  child: EventsWithinNextWeekWidget()),
+              Text(
                 "Barcha Tadbirlar",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
-              const CreatedEventsWidget(),
+              CreatedEventsWidget(),
             ],
           ),
         ));

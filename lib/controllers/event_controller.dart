@@ -40,4 +40,17 @@ class EventController with ChangeNotifier {
       return null;
     }
   }
+
+  Stream<QuerySnapshot<Object?>> getEventsWithinNextWeek() {
+    // Get the current date and the date one week from now
+    DateTime now = DateTime.now();
+    DateTime nextWeek = now.add(const Duration(days: 7));
+
+    // Query Firestore for events within the next week
+    return _eventFirebase
+        .where('event-date', isGreaterThanOrEqualTo: Timestamp.fromDate(now))
+        .where('event-date', isLessThanOrEqualTo: Timestamp.fromDate(nextWeek))
+        .orderBy('event-date')
+        .snapshots();
+  }
 }
