@@ -1,12 +1,15 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:exam_project_with_providers/models/user.dart';
 import 'package:exam_project_with_providers/services/users_firbase_service.dart.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as ath;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserRegistrationController with ChangeNotifier {
+  User? user;
   String _email = '';
   String _name = '';
   String _surname = '';
@@ -17,7 +20,7 @@ class UserRegistrationController with ChangeNotifier {
   String get surname => _surname;
   String get imageUrl => _imageUrl;
 
-  final fireAuth = FirebaseAuth.instance;
+  final fireAuth = ath.FirebaseAuth.instance;
   final userService = UserFirerbaseService();
 
   Future<void> saveUsersInfo() async {
@@ -51,6 +54,18 @@ class UserRegistrationController with ChangeNotifier {
     _surname = newSurname;
     _imageUrl = imageUrl;
     notifyListeners();
+  }
+
+  static Future<User> getUser(String userId) async {
+    final _getUSer =
+        await FirebaseFirestore.instance.collection('users').doc(userId).get();
+    return User(
+        id: _getUSer.id,
+        email: _getUSer.data()?["user-email"],
+        deviceId: _getUSer.data()?["user-deviceId"] ?? "nodevise",
+        name: _getUSer.data()?["user-name"],
+        surname: _getUSer.data()?['user-surname'],
+        imageUrl: _getUSer.data()?['user-imageUrl']);
   }
 
   login(String email, String password) async {

@@ -1,4 +1,5 @@
 import 'package:location/location.dart';
+import 'package:geocoding/geocoding.dart' as geoposition;
 
 class GooleMapService {
   static final _location = Location();
@@ -52,5 +53,22 @@ class GooleMapService {
 
   static Stream<LocationData> getLiveLocation() async* {
     yield* _location.onLocationChanged;
+  }
+
+  static Future<String> getLocationInformation(
+      double latitude, double longitude) async {
+    try {
+      List<geoposition.Placemark> placemarks =
+          await geoposition.placemarkFromCoordinates(latitude, longitude);
+
+      if (placemarks.isNotEmpty) {
+        final geoposition.Placemark place = placemarks[0];
+        return "${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
+      } else {
+        return "No address available";
+      }
+    } catch (e) {
+      return "Error: $e";
+    }
   }
 }

@@ -1,4 +1,6 @@
+import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
 import 'package:exam_project_with_providers/models/event.dart';
+import 'package:exam_project_with_providers/services/location_service.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -25,7 +27,6 @@ class _EvenDetailsScreenState extends State<EvenDetailsScreen> {
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text(
@@ -38,7 +39,7 @@ class _EvenDetailsScreenState extends State<EvenDetailsScreen> {
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                       color: Colors.green.shade100),
                   child: const Icon(
                     Icons.calendar_today_outlined,
@@ -50,14 +51,13 @@ class _EvenDetailsScreenState extends State<EvenDetailsScreen> {
                     .format(widget.event.date))
               ],
             ),
-            const Gap(20),
             Row(
               children: [
                 Container(
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                       color: Colors.green.shade100),
                   child: const Icon(
                     Icons.location_on_rounded,
@@ -65,8 +65,116 @@ class _EvenDetailsScreenState extends State<EvenDetailsScreen> {
                   ),
                 ),
                 const Gap(20),
+                Expanded(
+                  child: FutureBuilder(
+                      future: GooleMapService.getLocationInformation(
+                          widget.event.location.latitude,
+                          widget.event.location.longitude),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Text("Loading...");
+                        }
+                        if (snapshot.hasError) {
+                          return const Text("Error occured");
+                        }
+                        if (!snapshot.hasData || snapshot.data == null) {
+                          return const Text("No information yet");
+                        }
+                        return Text(snapshot.data!);
+                      }),
+                ),
               ],
-            )
+            ),
+            Row(
+              children: [
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.green.shade100),
+                  child: const Icon(
+                    Icons.person,
+                    color: Colors.black87,
+                  ),
+                ),
+                const Gap(20),
+                Column(
+                  children: [
+                    Text(
+                        "${widget.event.membersList.length.toString()} ta odam qatnashmoqda"),
+                    const Text("Siz ham ro'yxatdan o'ting"),
+                  ],
+                )
+              ],
+            ),
+            FutureBuilder(
+                future:
+                    UserRegistrationController.getUser(widget.event.organiser),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text("Loading...");
+                  }
+                  if (snapshot.hasError) {
+                    return const Text("Error occured");
+                  }
+                  if (!snapshot.hasData || snapshot.data == null) {
+                    return const Text("No information yet");
+                  }
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ListTile(
+                        tileColor: Colors.green.shade100,
+                        leading: Image.network(snapshot.data!.imageUrl!),
+                        title: Text(snapshot.data!.name),
+                        subtitle: Text(snapshot.data!.surname),
+                        trailing: Text(snapshot.data!.email),
+                      ),
+                    ],
+                  );
+                }),
+            Column(
+              children: [
+                const Text("Tadbir haqida"),
+                const Gap(10),
+                Text(widget.event.description),
+                const Gap(10),
+                const Text("Manzil"),
+              ],
+            ),
+            const Gap(10),
+            SizedBox(
+              width: double.infinity,
+              height: 300,
+              child: GoogleMap(
+                initialCameraPosition: CameraPosition(
+                    target: LatLng(widget.event.location.latitude,
+                        widget.event.location.longitude),
+                    zoom: 14),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.orange.shade300,
+                borderRadius: BorderRadius.circular(10),
+                shape: BoxShape.rectangle,
+              ),
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange.shade300,
+                ),
+                child: const Text(
+                  "Ro'yxatdan O'tish",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                ),
+              ),
+            ),
           ],
         ),
       ),
