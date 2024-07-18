@@ -52,7 +52,9 @@ class _CreatedEventsWidgetState extends State<CreatedEventsWidget> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (ctx) => const EvenDetailsScreen()));
+                            builder: (ctx) => EvenDetailsScreen(
+                                  event: event,
+                                )));
                   },
                 );
               },

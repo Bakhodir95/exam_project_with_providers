@@ -1,7 +1,12 @@
+import 'package:exam_project_with_providers/models/event.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
 
 class EvenDetailsScreen extends StatefulWidget {
-  const EvenDetailsScreen({super.key});
+  final Event event;
+  const EvenDetailsScreen({super.key, required this.event});
 
   @override
   State<EvenDetailsScreen> createState() => _EvenDetailsScreenState();
@@ -16,16 +21,51 @@ class _EvenDetailsScreenState extends State<EvenDetailsScreen> {
           IconButton(onPressed: () {}, icon: Icon(Icons.favorite_outlined))
         ],
       ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               "Satellite mega festival for\ndesigners",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+            Row(
+              children: [
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.green.shade100),
+                  child: const Icon(
+                    Icons.calendar_today_outlined,
+                    color: Colors.black87,
+                  ),
+                ),
+                const Gap(20),
+                Text(DateFormat("E, d MMM yyyy HH:mm:ss")
+                    .format(widget.event.date))
+              ],
+            ),
+            const Gap(20),
+            Row(
+              children: [
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.green.shade100),
+                  child: const Icon(
+                    Icons.location_on_rounded,
+                    color: Colors.black87,
+                  ),
+                ),
+                const Gap(20),
+              ],
             )
           ],
         ),
