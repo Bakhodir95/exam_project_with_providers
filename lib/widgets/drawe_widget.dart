@@ -3,7 +3,6 @@ import 'package:exam_project_with_providers/providers/theme_provider.dart';
 import 'package:exam_project_with_providers/screens/events_screen.dart';
 import 'package:exam_project_with_providers/screens/favourite_screen.dart';
 import 'package:exam_project_with_providers/screens/profile_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

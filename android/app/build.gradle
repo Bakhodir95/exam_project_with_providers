@@ -59,3 +59,16 @@ android {
 flutter {
     source = "../.."
 }
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.2'
+        classpath 'com.google.gms:google-services:4.3.10'
+    }
+}
+apply plugin: 'com.google.gms.google-services'
+
