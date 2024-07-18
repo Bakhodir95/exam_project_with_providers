@@ -1,5 +1,6 @@
 import 'package:exam_project_with_providers/controllers/event_controller.dart';
 import 'package:exam_project_with_providers/models/event.dart';
+import 'package:exam_project_with_providers/screens/even_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,17 +29,34 @@ class _CreatedEventsWidgetState extends State<CreatedEventsWidget> {
             return Event.fromMap(doc);
           }).toList();
 
-          return ListView.builder(
-            itemCount: events.length,
-            itemBuilder: (context, index) {
-              Event event = events[index];
-              return ListTile(
-                title: Text(event.name),
-                subtitle: Text(event.description),
-                trailing: Text(event.date.toIso8601String()),
-                onTap: () {},
-              );
-            },
+          return Expanded(
+            child: ListView.builder(
+              itemCount: events.length,
+              itemBuilder: (context, index) {
+                Event event = events[index];
+                return ListTile(
+                  leading: event.imageUrl.isNotEmpty
+                      ? Image.network(
+                          event.imageUrl,
+                          width: 70,
+                          height: 70,
+                          fit: BoxFit.cover,
+                        )
+                      : const Icon(Icons.event),
+                  title: Text(event.name),
+                  subtitle: Text(event.description),
+                  trailing: Text(
+                    '${event.date.day}/${event.date.month}/${event.date.year}',
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (ctx) => const EvenDetailsScreen()));
+                  },
+                );
+              },
+            ),
           );
         }
       },

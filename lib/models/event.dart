@@ -30,7 +30,7 @@ class Event {
     return {
       'event-name': name,
       'event-organiser': organiser,
-      'event-date': date.toString(),
+      'event-date': Timestamp.fromDate(date),
       'event-time': {'hour': time.hour, 'minute': time.minute},
       'event-description': description,
       'event-imageUrl': imageUrl,
@@ -51,7 +51,6 @@ class Event {
       ),
       description: query['event-description'],
       imageUrl: query['event-imageUrl'],
-      isLike: query['event-isLike'],
       location: query['event-location'],
       membersList: query['event-membersList'],
     );

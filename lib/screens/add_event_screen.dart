@@ -99,7 +99,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
     }
   }
 
-  void _submitForm() {
+  void _submitForm() async {
     if (_nomi.text.isEmpty ||
         _kuni.text.isEmpty ||
         _vaqti.text.isEmpty ||
@@ -113,7 +113,12 @@ class _AddEventScreenState extends State<AddEventScreen> {
       return;
     } else {
       GeoPoint(selected!.latitude, selected!.longitude);
-      _eventController.addEvent(
+
+      String? imageUrl = await EventController.uploadImage(
+        _getImageFile!,
+        _nomi.text,
+      );
+      await _eventController.addEvent(
         Event(
           id: '',
           name: _nomi.text,
@@ -124,7 +129,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
             minute: int.parse(_vaqti.text.split(':')[1]),
           ),
           description: _info.text,
-          imageUrl: _getImageFile.toString(),
+          imageUrl: imageUrl.toString(),
           location: GeoPoint(selected!.latitude, selected!.longitude),
           membersList: [],
         ),
