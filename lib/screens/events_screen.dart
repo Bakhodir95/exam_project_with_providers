@@ -1,3 +1,4 @@
+import 'package:exam_project_with_providers/screens/add_event_screen.dart';
 import 'package:exam_project_with_providers/widgets/drawe_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class _MyEventsState extends State<MyEvents> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
+        drawer: const AddDrawer(),
         appBar: AppBar(
           title: const Text("Mening tadbirlarim"),
           centerTitle: true,
@@ -41,6 +43,17 @@ class _MyEventsState extends State<MyEvents> {
             ),
             Center(child: Text('Notifications Tab')),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (ctx) => const AddEventScreen()));
+              },
+              icon: const Icon(Icons.add)),
         ),
       ),
     );

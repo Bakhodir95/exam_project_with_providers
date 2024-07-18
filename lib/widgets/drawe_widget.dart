@@ -4,7 +4,6 @@ import 'package:exam_project_with_providers/screens/events_screen.dart';
 import 'package:exam_project_with_providers/screens/favourite_screen.dart';
 import 'package:exam_project_with_providers/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,8 +14,8 @@ class AddDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        children: <Widget>[
+      child: Column(
+        children: [
           Consumer<UserRegistrationController>(
             builder: (context, userProvider, child) {
               return UserAccountsDrawerHeader(
@@ -37,7 +36,7 @@ class AddDrawer extends StatelessWidget {
             leading: const Icon(CupertinoIcons.tickets),
             title: const Text('Mening tadbirlarim'),
             onTap: () {
-              Navigator.push(context,
+              Navigator.pushReplacement(context,
                   CupertinoPageRoute(builder: (ctx) => const MyEvents()));
             },
           ),
@@ -78,12 +77,24 @@ class AddDrawer extends StatelessWidget {
                       builder: (ctx) => const FavouriteScreen()));
             },
           ),
-          ListTile(
-            onTap: () {
-              FirebaseAuth.instance.signOut();
-            },
-            title: const Icon(Icons.logout),
-            trailing: Text("Chiqish"),
+          const Spacer(),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.logout,
+                  size: 25,
+                ),
+              ),
+              const Text(
+                "Chiqish",
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 20,
+                ),
+              ),
+            ],
           )
         ],
       ),
