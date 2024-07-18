@@ -1,4 +1,5 @@
 // ignore: depend_on_referenced_packages
+import 'package:exam_project_with_providers/controllers/event_controller.dart';
 import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
 import 'package:exam_project_with_providers/providers/theme_provider.dart';
 import 'package:exam_project_with_providers/providers/user_provider.dart';
@@ -23,6 +24,7 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => UserRegistrationController()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => EventController()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => UserFirerbaseService()),
       ],

@@ -1,5 +1,9 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:exam_project_with_providers/controllers/event_controller.dart';
+import 'package:exam_project_with_providers/models/event.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -13,6 +17,7 @@ class AddEventScreen extends StatefulWidget {
 }
 
 class _AddEventScreenState extends State<AddEventScreen> {
+  final _eventController = EventController();
   final _nomi = TextEditingController();
   final _kuni = TextEditingController();
   final _vaqti = TextEditingController();
@@ -105,23 +110,27 @@ class _AddEventScreenState extends State<AddEventScreen> {
           content: Text("Har bir maydon to'ldirilishi shart"),
         ),
       );
-      return; // Add this return statement to stop the function execution
+      return;
+    } else {
+      GeoPoint(selected!.latitude, selected!.longitude);
+      _eventController.addEvent(
+        Event(
+          id: '',
+          name: _nomi.text,
+          organiser: FirebaseAuth.instance.currentUser!.uid,
+          date: DateTime.parse(_kuni.text),
+          time: TimeOfDay(
+            hour: int.parse(_vaqti.text.split(':')[0]),
+            minute: int.parse(_vaqti.text.split(':')[1]),
+          ),
+          description: _info.text,
+          imageUrl: _getImageFile.toString(),
+          location: GeoPoint(selected!.latitude, selected!.longitude),
+          membersList: [],
+        ),
+      );
     }
 
-    final eventName = _nomi.text;
-    final eventDate = _kuni.text;
-    final eventTime = _vaqti.text;
-    final eventInfo = _info.text;
-    final eventLocation = selected;
-
-    // Process the data
-    print('Event Name: $eventName');
-    print('Event Date: $eventDate');
-    print('Event Time: $eventTime');
-    print('Event Info: $eventInfo');
-    print('Event Location: $eventLocation');
-
-    // Clear fields after submission
     _nomi.clear();
     _kuni.clear();
     _vaqti.clear();

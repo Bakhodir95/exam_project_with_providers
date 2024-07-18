@@ -10,8 +10,8 @@ class Event {
   String description;
   String imageUrl;
   bool isLike;
-  String location;
-  int memberCount;
+  GeoPoint location;
+  List membersList;
 
   Event({
     required this.id,
@@ -23,21 +23,37 @@ class Event {
     required this.imageUrl,
     this.isLike = false,
     required this.location,
-    required this.memberCount,
+    required this.membersList,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'event-name': name,
+      'event-organiser': organiser,
+      'event-date': date.toString(),
+      'event-time': {'hour': time.hour, 'minute': time.minute},
+      'event-description': description,
+      'event-imageUrl': imageUrl,
+      'event-location': location,
+      'event-membersList': membersList,
+    };
+  }
 
   factory Event.fromMap(QueryDocumentSnapshot query) {
     return Event(
       id: query.id,
       name: query['event-name'],
       organiser: query['event-organiser'],
-      date: query['event-date'],
-      time: query['event-time'],
+      date: (query['event-date'] as Timestamp).toDate(),
+      time: TimeOfDay(
+        hour: query['event-time']['hour'],
+        minute: query['event-time']['minute'],
+      ),
       description: query['event-description'],
       imageUrl: query['event-imageUrl'],
       isLike: query['event-isLike'],
       location: query['event-location'],
-      memberCount: query["event-memberCount"],
+      membersList: query['event-membersList'],
     );
   }
 }

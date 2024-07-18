@@ -4,11 +4,13 @@ import 'package:exam_project_with_providers/providers/user_provider.dart';
 import 'package:exam_project_with_providers/screens/events_screen.dart';
 import 'package:exam_project_with_providers/screens/favourite_screen.dart';
 import 'package:exam_project_with_providers/screens/profile_screen.dart';
+import 'package:exam_project_with_providers/widgets/created_events_widget.dart';
 import 'package:exam_project_with_providers/widgets/drawe_widget.dart';
 import 'package:exam_project_with_providers/widgets/search_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -38,11 +40,23 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ]),
         drawer: const AddDrawer(),
-        body: const Padding(
+        body: Padding(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           child: Column(
             children: [
-              SearchWidget(),
+              const SearchWidget(),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Container(
+                  width: 400,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.amber,
+                  ),
+                ),
+              ),
+              const CreatedEventsWidget(),
             ],
           ),
         ));
