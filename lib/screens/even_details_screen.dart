@@ -20,7 +20,8 @@ class _EvenDetailsScreenState extends State<EvenDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.favorite_outlined))
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.favorite_outlined))
         ],
       ),
       body: Padding(
@@ -137,11 +138,13 @@ class _EvenDetailsScreenState extends State<EvenDetailsScreen> {
                 }),
             Column(
               children: [
-                const Text("Tadbir haqida"),
+                const Text(
+                  "Tadbir haqida",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                ),
                 const Gap(10),
                 Text(widget.event.description),
                 const Gap(10),
-                const Text("Manzil"),
               ],
             ),
             const Gap(10),
@@ -153,6 +156,12 @@ class _EvenDetailsScreenState extends State<EvenDetailsScreen> {
                     target: LatLng(widget.event.location.latitude,
                         widget.event.location.longitude),
                     zoom: 14),
+                markers: {
+                  Marker(
+                      markerId: const MarkerId("qqq"),
+                      position: LatLng(widget.event.location.latitude,
+                          widget.event.location.longitude)),
+                },
               ),
             ),
             Container(

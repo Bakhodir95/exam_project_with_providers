@@ -1,16 +1,9 @@
-import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
-import 'package:exam_project_with_providers/providers/theme_provider.dart';
 import 'package:exam_project_with_providers/providers/user_provider.dart';
-import 'package:exam_project_with_providers/screens/events_screen.dart';
-import 'package:exam_project_with_providers/screens/favourite_screen.dart';
-import 'package:exam_project_with_providers/screens/profile_screen.dart';
 import 'package:exam_project_with_providers/widgets/created_events_widget.dart';
 import 'package:exam_project_with_providers/widgets/drawe_widget.dart';
 import 'package:exam_project_with_providers/widgets/search_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -43,8 +36,14 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Padding(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SearchWidget(),
+              const Gap(10),
+              const Text(
+                "Yaqin 7 kun ichida",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Container(
@@ -55,6 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.amber,
                   ),
                 ),
+              ),
+              const Text(
+                "Barcha Tadbirlar",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               const CreatedEventsWidget(),
             ],
