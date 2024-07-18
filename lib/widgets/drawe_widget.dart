@@ -1,12 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
 import 'package:exam_project_with_providers/providers/theme_provider.dart';
 import 'package:exam_project_with_providers/screens/events_screen.dart';
-import 'package:exam_project_with_providers/screens/favourite_screen.dart';
 import 'package:exam_project_with_providers/screens/home_screen.dart';
-import 'package:exam_project_with_providers/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -77,6 +74,25 @@ class AddDrawer extends StatelessWidget {
               Navigator.push(context,
                   CupertinoPageRoute(builder: (ctx) => const HomeScreen()));
             },
+          ),
+          ListTile(
+            trailing: PopupMenuButton<Locale>(
+              onSelected: (locale) {
+                context.setLocale(locale);
+              },
+              itemBuilder: (context) => [
+                const PopupMenuItem<Locale>(
+                  value: Locale('en'),
+                  child: Text('English'),
+                ),
+                const PopupMenuItem<Locale>(
+                  value: Locale('uz'),
+                  child: Text('Uzbek'),
+                ),
+              ],
+            ),
+            leading: const Icon(Icons.language),
+            title: const Text("Til"),
           ),
           const Spacer(),
           Row(

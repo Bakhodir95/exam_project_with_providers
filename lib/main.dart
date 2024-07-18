@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:exam_project_with_providers/controllers/event_controller.dart';
 import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
-import 'package:exam_project_with_providers/l10n/app_localizations.dart';
 import 'package:exam_project_with_providers/providers/theme_provider.dart';
 import 'package:exam_project_with_providers/providers/user_provider.dart';
 import 'package:exam_project_with_providers/screens/login_screen.dart';
@@ -24,7 +23,7 @@ Future<void> main() async {
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('en'), Locale('uz')],
-      path: 'assets/translations',
+      path: 'assets/i18n',
       fallbackLocale: const Locale('uz'),
       child: MultiProvider(
         providers: [

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:exam_project_with_providers/providers/user_provider.dart';
 import 'package:exam_project_with_providers/widgets/created_events_widget.dart';
 import 'package:exam_project_with_providers/widgets/drawe_widget.dart';
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: const Text("Bosh Sahifa"),
+            title: const Text("bosh_sahifa").tr(),
             centerTitle: true,
             actions: [
               IconButton(
