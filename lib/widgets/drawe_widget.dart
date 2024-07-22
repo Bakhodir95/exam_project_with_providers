@@ -3,14 +3,20 @@ import 'package:exam_project_with_providers/controllers/user_registration_contro
 import 'package:exam_project_with_providers/providers/theme_provider.dart';
 import 'package:exam_project_with_providers/screens/events_screen.dart';
 import 'package:exam_project_with_providers/screens/home_screen.dart';
+import 'package:exam_project_with_providers/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AddDrawer extends StatelessWidget {
+class AddDrawer extends StatefulWidget {
   const AddDrawer({super.key});
 
+  @override
+  State<AddDrawer> createState() => _AddDrawerState();
+}
+
+class _AddDrawerState extends State<AddDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -98,8 +104,11 @@ class AddDrawer extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (ctx) => const LoginScreen()));
+                  setState(() {});
                 },
                 icon: const Icon(
                   Icons.logout,

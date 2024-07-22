@@ -45,8 +45,18 @@ class _CreatedEventsWidgetState extends State<CreatedEventsWidget> {
                       : const Icon(Icons.event),
                   title: Text(event.name),
                   subtitle: Text(event.description),
-                  trailing: Text(
-                    '${event.date.day}/${event.date.month}/${event.date.year}',
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '${event.date.day}/${event.date.month}/${event.date.year}',
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            context.read<EventController>().delete(event.id);
+                          },
+                          icon: const Icon(Icons.delete))
+                    ],
                   ),
                   onTap: () {
                     Navigator.push(

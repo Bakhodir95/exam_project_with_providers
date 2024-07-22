@@ -89,17 +89,6 @@ class _EventsWithinNextWeekWidgetState
                   ),
                 ),
                 Positioned(
-                  top: 10,
-                  right: 10,
-                  child: IconButton(
-                    onPressed: () {
-                      // Handle like event
-                      // .( event.id);
-                    },
-                    icon: Icon(Icons.favorite),
-                  ),
-                ),
-                Positioned(
                   top: 20,
                   left: 20,
                   child: Container(

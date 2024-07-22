@@ -24,14 +24,11 @@ class EventController with ChangeNotifier {
 
   static Future<String?> uploadImage(File imageFile, String path) async {
     try {
-      // Create a reference to the Firebase Storage location
       Reference storageReference = _firebaseStorage.ref().child('$path.jpg');
 
-      // Upload the file
       UploadTask uploadTask = storageReference.putFile(imageFile);
       TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => {});
 
-      // Get the download URL
       String downloadURL = await taskSnapshot.ref.getDownloadURL();
 
       return downloadURL;
@@ -42,15 +39,17 @@ class EventController with ChangeNotifier {
   }
 
   Stream<QuerySnapshot<Object?>> getEventsWithinNextWeek() {
-    // Get the current date and the date one week from now
     DateTime now = DateTime.now();
     DateTime nextWeek = now.add(const Duration(days: 7));
 
-    // Query Firestore for events within the next week
     return _eventFirebase
         .where('event-date', isGreaterThanOrEqualTo: Timestamp.fromDate(now))
         .where('event-date', isLessThanOrEqualTo: Timestamp.fromDate(nextWeek))
         .orderBy('event-date')
         .snapshots();
+  }
+
+  Future<void> delete(String eventId) async {
+    await _eventFirebase.doc(eventId).delete();
   }
 }

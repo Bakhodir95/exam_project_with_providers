@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:exam_project_with_providers/providers/user_provider.dart';
 import 'package:exam_project_with_providers/widgets/created_events_widget.dart';
 import 'package:exam_project_with_providers/widgets/drawe_widget.dart';
-import 'package:exam_project_with_providers/widgets/events_within_next_week_widget.dart';
+import 'package:exam_project_with_providers/widgets/seven_week.dart.dart';
 import 'package:exam_project_with_providers/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';

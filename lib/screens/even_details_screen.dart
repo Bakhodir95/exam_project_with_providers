@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:exam_project_with_providers/controllers/user_registration_controller.dart';
 import 'package:exam_project_with_providers/models/event.dart';
+import 'package:exam_project_with_providers/screens/booking_screen.dart';
 import 'package:exam_project_with_providers/services/location_service.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -175,13 +176,19 @@ class _EvenDetailsScreenState extends State<EvenDetailsScreen> {
                 shape: BoxShape.rectangle,
               ),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (ctx) => const BookingScreen()));
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange.shade300,
                 ),
                 child: Text(
                   "royxatdan_otish".tr(),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 25),
                 ),
               ),
             ),
